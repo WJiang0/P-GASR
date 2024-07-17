@@ -1,0 +1,41 @@
+## global
+seed: 0
+device: cuda
+mode: train
+best_path: None
+debug: False # true means no log in file
+
+## data
+data_dir: data
+dataset: BJTaxi 
+input_length: 35 # 8+9*3
+batch_size: 20  # 32 will cause oom
+test_batch_size: 20
+graph_file: data/BJTaxi/adj_mx.npz # num_nodes: 1024
+
+## model 
+d_input: 1                  # means inflow and outflow
+d_output: 2                 # means inflow and outflow
+d_model: 64
+dropout: 0.1
+yita: 0.5                   # balance for inflow loss and outflow loss, $yita * inflow + (1 - yita) * outflow$
+
+
+## train
+pretrain_epochs: 200
+epochs: 200
+lr_init: 0.0005
+early_stop: True
+pretrain_early_stop_patience: 15
+retrain_early_stop_patience: 30
+grad_norm: True
+max_grad_norm: 5
+weight_decay1: 0
+weight_decay2: 0
+weight_decay3: 0
+
+## ARP-settings
+pretrain_rate: 0.5          # rate of pretrain data
+alpha: 1
+beta: 1
+pretrain: False
