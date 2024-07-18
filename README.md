@@ -18,8 +18,8 @@ Due to size limitations, we only provide NYCBike1, NYCBike2 and NYCTaxi datasets
 
 ## Model Training
 
-Run main.py to train the model.
+Run **main.py** to train the model.
 
-If you want to train the model from scratch, run pretrain.py to pretrain for obtaining sample weights beform run main.py.
+If you want to train the model from scratch, run **pretrain.py** to pretrain for obtaining sample weights before running **main.py**.
 
 Please make sure the enviornment setting is correct for reproducing the result.
