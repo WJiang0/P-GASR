@@ -86,14 +86,13 @@ class PhyEncoder(nn.Module):
 
         z = self.dropout3(self.ln3(x.permute(0, 2, 3, 1))) # nlvc
 
-        for t in range(input_length):
-            res_i = self.sconv_i(f[:,t,:,0].reshape(batch_size, 1, 1, num_nodes), Lk)
+        res_i = self.sconv_i(f[:,-1,:,0].reshape(batch_size, 1, 1, num_nodes), Lk)
 
-            res_o = self.sconv_o(f[:,t,:,1].reshape(batch_size, 1, 1, num_nodes), Lk)
+        res_o = self.sconv_o(f[:,-1,:,1].reshape(batch_size, 1, 1, num_nodes), Lk)
 
-            z_ = z  + (res_i.permute(0, 2, 3, 1) - res_o.permute(0, 2, 3, 1))
-            
-            z_ = torch.relu(self.lr(z_))
+        z_ = z  + (res_i.permute(0, 2, 3, 1) - res_o.permute(0, 2, 3, 1))
+        
+        z_ = torch.relu(self.lr(z_))
 
         z_out = self.dropout4(self.ln4(z_))
 
