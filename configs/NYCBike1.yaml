@@ -36,4 +36,4 @@ weight_decay3: 0
 pretrain_rate: 0.5          # rate of pretrain data
 alpha: 0.8
 beta: 0.9
-pretrain: True
+pretrain: False
